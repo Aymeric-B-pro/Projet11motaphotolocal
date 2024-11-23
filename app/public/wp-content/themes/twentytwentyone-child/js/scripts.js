@@ -85,3 +85,24 @@ jQuery(document).ready(function($) {
         }
     });
 });
+
+//Animation et classes du menu sous media query
+document.addEventListener('DOMContentLoaded', function () {
+    const menuToggle = document.querySelector('#primary-mobile-menu'); // Bouton du menu
+    const menu = document.querySelector('#site-navigation'); // Menu
+    const logo = document.querySelector('.site-logo'); // Logo
+
+    if (menuToggle && menu && logo) {
+        menuToggle.addEventListener('click', function () {
+            // Basculer la classe 'menu-open' sur le menu
+            const isOpen = menu.classList.toggle('menu-open');
+
+            // Basculer la classe 'logo-menu-openanim' sur le logo
+            if (isOpen) {
+                logo.classList.add('logo-menu-openanim');
+            } else {
+                logo.classList.remove('logo-menu-openanim');
+            }
+        });
+    }
+});

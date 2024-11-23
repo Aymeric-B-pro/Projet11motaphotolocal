@@ -59,7 +59,13 @@ p {
     font-family: 'Poppins', sans-serif;
     font-weight: 300;
 }
-
+a:focus,
+a:active {
+    color: inherit !important;
+}
+input:focus, textarea:focus, button:focus {
+    outline: none !important;
+}
 /* Style du header */
 .site-header {
     display: flex;
@@ -80,11 +86,18 @@ p {
     font-weight: 400;
     font-size: 16px;
 }
-primary-menu-list {
+
+.primary-menu-container a{
+    color:black;
+}
+.primary-menu-list a{
     background: none !important;
     outline: none !important;
     text-decoration: none !important;
     color:black;
+}
+.primary-navigation a:hover {
+    font-weight: bold;
 }
 .button {
     background: none !important;
@@ -103,7 +116,7 @@ primary-menu-list {
     flex-grow: 1;
     text-align: right;
 }
-#primary-menu-list a {
+.primary-menu-list a {
     list-style: none;
     margin: 0;
     padding: 0;
@@ -112,14 +125,28 @@ primary-menu-list {
     text-decoration: none;
     list-style: none;
     background: none; 
-    font-family: 'Space Mono', monospace;
-    font-size: 18px;
-    font-weight: 400;
-    line-height: 26.66px;
     text-decoration: none !important;
     background: transparent !important;
     color: #000 !important;
     margin-left: 35px;
+}
+.logo-menu-openanim {
+    z-index: 500;
+    top: 0px !important;
+}
+#site-navigation.menu-open {
+    display: block;
+    animation: slideDown 0.8s ease-in-out; /* Durée et timing */
+}
+@keyframes slideDown {
+    from {
+        transform: translateY(40px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
 /* Footer */
 .site-footer {
@@ -158,6 +185,9 @@ primary-menu-list {
     font-weight: 400;
     line-height: 23.7px;
     padding: 0;
+}
+.footer-navigation-wrapper a:hover{
+    font-weight: bold;
 }
 .site-main {
     padding:0px !important;
@@ -256,10 +286,7 @@ primary-menu-list {
     color:black !important;
     font-family: space-mono !important;
     font-weight: 400;
-}
-.submitbtn:hover {
-    background-color: #fefefe !important;
-    border: 1px solid #000000 !important;
+    text-decoration: none !important;
 }
 /* --- SIngle-photo CSS --- */
 .single-photo-container {
@@ -290,15 +317,10 @@ primary-menu-list {
 .left-info-block h2, .left-info-block p, .left-info-block a {
     font-family: 'Space Mono', monospace !important;
     font-weight: 400;
+    font-size: 14px;
     text-transform: uppercase;
     margin-bottom: 15px;
     text-decoration: none;
-}
-.left-info-block h2 {
-    font-size: 14px;
-}
-.left-info-block p, .left-info-block a {
-    font-size: 14px;
 }
 /* Bloc droit photo */
 .right-photo-block {
@@ -343,6 +365,9 @@ primary-menu-list {
     font-size: 14px;
 }
 .contact-link a {
+    font-family: Space Mono;
+    font-size: 12px;
+    font-weight: 400;
     display: block;
     width: 272px;
     height: 50px;
@@ -350,16 +375,11 @@ primary-menu-list {
     border-radius: 2px 0 0 0;
     background-color: #D8D8D8;
     text-align: center;
-    font-weight: 400;
-    font-size: 12px;
     line-height: 34px;
-    background-color: initial !important; /* Supprime les couleurs de fond */
-    opacity: 1; /* Assure qu'ils sont visibles */
-    visibility: visible; /* Assure qu'ils ne sont pas cachés */
-    box-shadow: none; /* Supprime les ombres si présentes */
-    border: none; /* Supprime les bordures */
-    color: inherit !important; /* Réutilise la couleur de texte générale */
     text-decoration: none !important;
+}
+.contact-link a:focus {
+    color:white !important;
 }
 /* Colonne milieu droite */
 .navigation-links {
@@ -377,7 +397,11 @@ primary-menu-list {
     font-size: 40px;
     color: #000;
     display: inline-block;
-    text-decoration: none;
+    background: none !important;
+    text-decoration: none !important;
+}
+.nav-link:hover {
+    font-weight: bold;
 }
 /* Style général des miniatures */
 .nav-preview {
@@ -478,10 +502,20 @@ primary-menu-list {
 .filter-container select option:first-child {
     display: none;
 }
+#date-order select option
+select:focus, select option:checked {
+    background-color: #E00000!important;
+    color: white !important;
+}
+
 .filter-container select:focus {
-    border: 1.3px solid #215AFF;
+    border: 1.3px solid #E00000;
     border-bottom-left-radius: 0px;
     border-bottom-right-radius: 0px;
+}
+.selected {
+    background-color: #E00000!important;
+    color: white;
 }
 /* Style de base pour les options */
 .filter-container select option {
@@ -526,7 +560,7 @@ primary-menu-list {
     object-fit: cover;
     object-position: center;
 }
-/* Ajouter le dégradé avec un pseudo-élément ::before */
+/* Dégradé avec un pseudo-élément ::before */
 .related-photo-block::before {
     content: "";
     position: absolute;
@@ -534,10 +568,10 @@ primary-menu-list {
     left: 0;
     width: 100%;
     height: 100%;
-  background: linear-gradient(
+    background: linear-gradient(
         to top, 
         rgba(0, 0, 0, 0.7) 0%,   
-        rgba(0, 0, 0, 0.3) 20%,  
+        rgba(0, 0, 0, 0.3) 40%,  
         rgba(0, 0, 0, 0) 100%    
     );
     opacity: 0;
@@ -597,19 +631,6 @@ primary-menu-list {
 .related-photo-block:hover::before {
     opacity: 1;
 }
-/* Ajout d'un dégradé en bas de l'image */
-.photo-info {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    padding: 5px 10px;
-    color: white;
-    background: linear-gradient(to middle, rgba(0, 0, 0, 0) 0%, 100%); /* Dégradé plus sombre */
-    display: flex;
-    justify-content: space-between;
-    background: linear-gradient(to middle, rgba(0, 0, 0, 0) 0%, 100%); /* Dégradé plus sombre */
-}
 .related-photo-block:hover .overlay-icon,
 .related-photo-block:hover .photo-info {
     opacity: 1;
@@ -631,9 +652,9 @@ primary-menu-list {
     border: none;
     cursor: pointer;
 }
-#load-more:hover {
-    background-color:#000000;
-    color: white;
+#load-more:hover, .submitbtn:hover, .contact-link:hover a{
+    background-color: #000000 !important;
+    color: white !important;
 }
 #load-more:focus {
     outline: none;
@@ -700,6 +721,9 @@ primary-menu-list {
     background-color: transparent !important;
     color: white;
 }
+.nav-linklight:hover, .next-linklight:hover {
+    font-weight: bold;
+}
 /* Conteneur de l'image */
 .image-info-container {
     display: flex;
@@ -726,7 +750,6 @@ primary-menu-list {
     max-width: 100%;
     box-sizing: border-box;
 }
-
 /* Styles généraux pour tous les écrans */
 /* Très grand écran */
 @media only screen and (max-width:1475px) {
@@ -757,7 +780,6 @@ primary-menu-list {
         flex-direction: column;
     }
 }
-
 @media only screen and (max-width: 800px) {
     .bloc-top {
         flex-direction: column-reverse;
@@ -837,7 +859,6 @@ primary-menu-list {
         grid-template-columns: 1fr;
     }
 }
-
 /* Cacher le menu principal sur les petits écrans */
 @media only screen and (max-width: 696px) {
     .main-menu-class {
@@ -847,7 +868,6 @@ primary-menu-list {
         flex-direction: row;
     }
 }
-
 @media only screen and (max-width: 604px) {
     .modal-content {
         display: block;
@@ -871,7 +891,6 @@ primary-menu-list {
     }
 
 }
-
 /* Petits appareils (téléphones en mode portrait, largeur max de 480px) */
 @media only screen and (max-width: 481px) {
     .site-header {
@@ -885,7 +904,7 @@ primary-menu-list {
         padding: 0px !important;
         display: flex !important;
         position: absolute !important;
-        margin-top: 0px !important;
+        margin: 0px !important;
     }
     .site-logo img{
         height: 9px !important;
@@ -902,12 +921,12 @@ primary-menu-list {
         background:#E00000 !important;
         align-items: center;
     }
-    .menu-wrapper a{
-        font-family: Space Mono;
+    .primary-menu-container a{
         font-size: 44px !important;
         font-weight: 400 !important;
         text-align: center;
         color: white !important;
-        justify-content: center;
+        justify-content: center !important;
+        margin-bottom: 10px;
     }
 }
