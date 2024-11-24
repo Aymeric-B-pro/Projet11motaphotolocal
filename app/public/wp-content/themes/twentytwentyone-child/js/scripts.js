@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var modal = document.getElementById('myModal');
 
     // Get the button that opens the modal
-    var btn = document.getElementsByClassName('contactlink'); // Première occurrence de la classe 'myBtn'
+    var btn = document.getElementsByClassName('contactlink');
 
     // Get the <span> element that closes the modal
     var span = document.getElementsByClassName("close")[0];
@@ -88,9 +88,9 @@ jQuery(document).ready(function($) {
 
 //Animation et classes du menu sous media query
 document.addEventListener('DOMContentLoaded', function () {
-    const menuToggle = document.querySelector('#primary-mobile-menu'); // Bouton du menu
-    const menu = document.querySelector('#site-navigation'); // Menu
-    const logo = document.querySelector('.site-logo'); // Logo
+    const menuToggle = document.querySelector('#primary-mobile-menu');
+    const menu = document.querySelector('#site-navigation');
+    const logo = document.querySelector('.site-logo');
 
     if (menuToggle && menu && logo) {
         menuToggle.addEventListener('click', function () {

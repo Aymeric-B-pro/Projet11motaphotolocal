@@ -221,7 +221,7 @@ input:focus, textarea:focus, button:focus {
     margin: 15% auto; 
     padding: 20px;
     border: 1px solid #888;
-    width: 80%; 
+    width: 597px;
     transform: translateX(100%);
     opacity: 0;
     animation: slideIn 0.7s forwards;
